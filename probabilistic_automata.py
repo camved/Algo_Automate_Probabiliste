@@ -5,6 +5,8 @@ import math
 
 class ProbabilisticAutomata :
 
+#Classical functions of an oriented object structure
+
     def __init__(self, alphabet, states, initial_states, set_of_transition_matrix, final_states):
         """
         :param alphabet: set of symbols

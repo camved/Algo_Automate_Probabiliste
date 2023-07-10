@@ -17,7 +17,6 @@ b = np.delete(a,0,1)
 
 c = np.delete(z,0,1)
 
-#print(c)
 #################### method tests ####################
 
 Sigma = {'a','b'}
@@ -70,4 +69,4 @@ PAbis =ProbabilisticAutomata(Sigmabis,Qbis,lambdAbis,mubis,gammabis)
 
 #print(ProbabilisticAutomata.word_probability(PA,'ab'))
 
-print(ProbabilisticAutomata.word_probability(PA,'cab'))
+#print(ProbabilisticAutomata.word_probability(PA,'cab'))
