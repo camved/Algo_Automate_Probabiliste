@@ -182,15 +182,15 @@ PA6 = ProbabilisticAutomata(Sigma6,Q6,lambdA6,mu6,gamma6)
 
 #print(ProbabilisticAutomata.reachable_states(PAter))
 
-print("original automata", PA6)
-miror=ProbabilisticAutomata.miror_automaton(PA6)
+print("original automata", PA)
+miror=ProbabilisticAutomata.miror_automaton(PA)
 print("miror",miror)
 cleared_miror = ProbabilisticAutomata.cleared_automaton(miror)
-print("cleared_miror",cleared_miror)
-# miror_miror= ProbabilisticAutomata.miror_automaton(cleared_miror)
-# print("miror_miror",miror_miror)
-# cleared_automaton1=ProbabilisticAutomata.cleared_automaton(miror_miror)
-# print("cleared_automaton",cleared_automaton1)
+print("cleared_miror", cleared_miror)
+miror_miror= ProbabilisticAutomata.miror_automaton(cleared_miror)
+print("miror_miror",miror_miror)
+cleared_automaton1=ProbabilisticAutomata.cleared_automaton(miror_miror)
+print("cleared_automaton",cleared_automaton1)
 
 
 
