@@ -22,7 +22,7 @@ class ProbabilisticAutomata :
         self.final_states = final_states
 
     def __str__(self):
-        """ Overrides print function """
+        """ Overrides #print function """
         res = "Display Automaton\n"
         res += "Alphabet: " + str(self.alphabet) +"\n"
         res += "Set of states: "+str(self.states) +"\n"
@@ -186,7 +186,7 @@ class ProbabilisticAutomata :
         
         set_of_miror_vectors = self.miror_vectors()
         new_transition_matrix = np.zeros((2**(np.size(self.initial_states)),2**(np.size(self.initial_states))))
-        print("new_transition_matrix", new_transition_matrix)
+        #print("new_transition_matrix", new_transition_matrix)
 
         for vector_index in set_of_miror_vectors :
             vector = set_of_miror_vectors[vector_index]
@@ -309,37 +309,37 @@ class ProbabilisticAutomata :
     def cleared_automaton(self):
 
         size = np.size(self.initial_states)
-        print("size",size)
+        #print("size",size)
 
         #First we want to check all the reachable states from the initial_states, means if the coefficient is not null.
         list_null = [0]*size
-        print(list_null)
+        #print(list_null)
 
         #We check all the transition in all the transition matrix
         for label in self.alphabet :
             list  = self.check_if_line_and_column_null(self.set_of_transition_matrix[label])
             for index in range (len(list_null)):
                 list_null[index] += list[index]
-            print('list_null',list_null)
+            #print('list_null',list_null)
 
         #We save all the reachable state in a memory lust
         global_reachable_states = []
         for vector_coefficient in range (size) :
-            print("vector_coefficient",vector_coefficient)
+            #print("vector_coefficient",vector_coefficient)
             # We do not want the same index several times and the initial states must be linked by a transition to the 
             # other states to be counted
 
-            print("self.initial_states[0][vector_coefficient]",self.initial_states[0][vector_coefficient])
-            print("list_null[vector_coefficient]",list_null[vector_coefficient])
+            #print("self.initial_states[0][vector_coefficient]",self.initial_states[0][vector_coefficient])
+            #print("list_null[vector_coefficient]",list_null[vector_coefficient])
 
             if self.initial_states[0][vector_coefficient] != 0 and list_null[vector_coefficient] != 0  :
                 if self.initial_states[0][vector_coefficient] not in global_reachable_states :
                     global_reachable_states.append(vector_coefficient)
-            print(global_reachable_states,"global_reachable_states")
+            #print(global_reachable_states,"global_reachable_states")
 
         for label in self.alphabet :
-            print(label)
-            print("global_reachable_states",global_reachable_states)
+            #print(label)
+            #print("global_reachable_states",global_reachable_states)
 
             #initialisation
             #Avoid out of range error type
@@ -347,99 +347,99 @@ class ProbabilisticAutomata :
             if global_reachable_states != [] :
                 reachable_states = [element for element in global_reachable_states]
 
-                print("reachable_states",reachable_states)
+                #print("reachable_states",reachable_states)
                 index_array = 0
                 matrix = self.set_of_transition_matrix[label]
                 matrix_index = reachable_states[index_array]
                 line_matrix = matrix[matrix_index]
-                print("matrix", matrix)
-                print("matrix_index",matrix_index)
-                print("line_matrix",line_matrix)
+                #print("matrix", matrix)
+                #print("matrix_index",matrix_index)
+                #print("line_matrix",line_matrix)
                 counter_deleted_list_element = 0
 
                 #Travers reachable states
 
                 while reachable_states != [] :
-                    print("index_array",index_array)
+                    #print("index_array",index_array)
                     for coef_matrix_index in range (size):
-                        print("coef_matrix_index",coef_matrix_index)
+                        #print("coef_matrix_index",coef_matrix_index)
                         coef_matrix = line_matrix[coef_matrix_index]
-                        print("coef_matrix",coef_matrix)
+                        #print("coef_matrix",coef_matrix)
                         if coef_matrix_index not in global_reachable_states and coef_matrix != 0 :
                             global_reachable_states.append(coef_matrix_index)
                             reachable_states.append(coef_matrix_index)
-                            print("global_reachable_states",global_reachable_states)
-                            print("reachable_states",reachable_states)
-                    print("global_reachable_states",global_reachable_states)
+                            #print("global_reachable_states",global_reachable_states)
+                            #print("reachable_states",reachable_states)
+                    #print("global_reachable_states",global_reachable_states)
                     index_used = counter_deleted_list_element + index_array
-                    print("reachable_states",reachable_states)
+                    #print("reachable_states",reachable_states)
                     reachable_states.pop(index_used)
-                    print("reachable_states",reachable_states)
-                    print("global_reachable_states",global_reachable_states)
+                    #print("reachable_states",reachable_states)
+                    #print("global_reachable_states",global_reachable_states)
 
                     counter_deleted_list_element -=1
                     index_array += 1
-                    print("global_reachable_states",global_reachable_states)
+                    #print("global_reachable_states",global_reachable_states)
             else :
                     return "This automata does not exist"
                 
 
         # cleared initial and final vector
         new_initial_states = self.initial_states
-        print(new_initial_states)
+        #print(new_initial_states)
         new_final_states = self.final_states
         counter_deleted_states = 0
 
         for states in range (0,size-1) :
-            print("states", states)
+            #print("states", states)
             if states not in global_reachable_states :
-                print(counter_deleted_states + states)
+                #print(counter_deleted_states + states)
                 new_final_states = np.delete(new_final_states, (states - counter_deleted_states),0)
                 new_initial_states = np.delete(new_initial_states, (states - counter_deleted_states), 1)
-                print(new_initial_states)
+                #print(new_initial_states)
                 counter_deleted_states += 1
         self.initial_states = new_initial_states
         self.final_states = new_final_states
 
 
-        print("new_initial_states",new_initial_states)
-        print("new_final_states",new_final_states)
+        #print("new_initial_states",new_initial_states)
+        #print("new_final_states",new_final_states)
 
         #cleared matrix without useless states
         new_set_of_transition_matrix ={}
         for label in self.alphabet :
-            print("label",label)
+            #print("label",label)
     
         # Because the matrix size will change at each deletion, we need a counter
             counter_deleted_line = 0
             matrix = self.set_of_transition_matrix[label]
             copy_global_reachable_states = [element for element in global_reachable_states]
-            print("matrix",matrix)
+            #print("matrix",matrix)
 
             # We loop in global state to delete them after
             
             for line_index_matrix in range (0,size) :
-                print("line_index_matrix",line_index_matrix)
+                #print("line_index_matrix",line_index_matrix)
 
                 if line_index_matrix not in global_reachable_states :
                     
                     future_deleted_line = line_index_matrix+counter_deleted_line
-                    print("future_deleted_line",future_deleted_line)
+                    #print("future_deleted_line",future_deleted_line)
                     line_cleared_matrix = np.delete(matrix,future_deleted_line,0)
-                    print("d")
+                    #print("d")
                     cleared_matrix = np.delete(line_cleared_matrix,future_deleted_line,1)
-                    print("e")
+                    #print("e")
                     matrix = cleared_matrix
-                    print("f")
+                    #print("f")
                     #Because the index are changed, minus one state, minus one is applied on all the list.
                     copy_global_reachable_states = self.minus_one_array(copy_global_reachable_states)
-                    print("i")
+                    #print("i")
                     
                     counter_deleted_line -= 1
             
             new_set_of_transition_matrix[label] = matrix
-            print("matrix",matrix)
-        print(new_set_of_transition_matrix)
+            #print("matrix",matrix)
+        #print(new_set_of_transition_matrix)
         self.set_of_transition_matrix = new_set_of_transition_matrix
 
         # states enumeration :
