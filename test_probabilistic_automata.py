@@ -117,9 +117,9 @@ PA6 = ProbabilisticAutomata(Sigma6,Q6,lambdA6,mu6,gamma6)
 #Automate 8
 Sigma7 = {'a','b'}
 Q7 = {0, 1, 2}
-lambdA7 = np.array([[1, 0, 0]])
+lambdA7 = np.array([[1/2, 0, 1/2]])
 mu7 = {'a' : np.array([[0,1/2,1/2],[0,1/2,1/2],[0,0,1]]), 'b' : np.array([[1,0,0],[0,1,0],[1/3,0,2/3]])}
-gamma7 = np.array([[0],[0],[1]])
+gamma7 = np.array([[0],[1/4],[1/4]])
 
 PA7 = ProbabilisticAutomata(Sigma7,Q7,lambdA7,mu7,gamma7)
 ######### test_tools ##########
@@ -201,6 +201,7 @@ miror_miror= ProbabilisticAutomata.miror_automaton(cleared_miror)
 print("miror_miror",miror_miror)
 cleared_automaton1=ProbabilisticAutomata.cleared_automaton(miror_miror)
 print("cleared_automaton",cleared_automaton1)
+
 
 
 

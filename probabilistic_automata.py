@@ -390,14 +390,14 @@ class ProbabilisticAutomata :
         new_final_states = self.final_states
         counter_deleted_states = 0
 
-        for states in range (0,size-1) :
-            #print("states", states)
+        
+        for states in range (0,size) :
+            
             if states not in global_reachable_states :
-                #print(counter_deleted_states + states)
                 new_final_states = np.delete(new_final_states, (states - counter_deleted_states),0)
                 new_initial_states = np.delete(new_initial_states, (states - counter_deleted_states), 1)
-                #print(new_initial_states)
                 counter_deleted_states += 1
+
         self.initial_states = new_initial_states
         self.final_states = new_final_states
 
