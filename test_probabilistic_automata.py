@@ -204,8 +204,3 @@ print("cleared_automaton",cleared_automaton1)
 
 
 
-
-#print(ProbabilisticAutomata.miror_minimised_automata(PAter))
-#rapport fin aout à renvoyer avant pour relctur et commentaire, 
-#aide ok. Pas trop peu avant la dead line, présentation sans être id a celle de sidi. Diviser théorèmes et exmple et miroir
-#date présentation : 
