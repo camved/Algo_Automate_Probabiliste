@@ -34,9 +34,11 @@ def random_matrix_automata(size) :
         x = random.uniform(0,borne)
         borne -= x
         ligne.append(x)
-        matrix[i] = ligne
+        print(matrix.flat)
+        matrix.flat[i] = ligne
+        
     return matrix
-    
+
 
 #Automate 1
 
@@ -112,6 +114,14 @@ gamma6 = np.array([[7/8],[5/6]])
 
 PA6 = ProbabilisticAutomata(Sigma6,Q6,lambdA6,mu6,gamma6)
 
+#Automate 8
+Sigma7 = {'a','b'}
+Q7 = {0, 1, 2}
+lambdA7 = np.array([[1, 0, 0]])
+mu7 = {'a' : np.array([[0,1/2,1/2],[0,1/2,1/2],[0,0,1]]), 'b' : np.array([[1,0,0],[0,1,0],[1/3,0,2/3]])}
+gamma7 = np.array([[0],[0],[1]])
+
+PA7 = ProbabilisticAutomata(Sigma7,Q7,lambdA7,mu7,gamma7)
 ######### test_tools ##########
 
 # print(ProbabilisticAutomata.min_greater_than_zero(PA, vector))
@@ -182,8 +192,8 @@ PA6 = ProbabilisticAutomata(Sigma6,Q6,lambdA6,mu6,gamma6)
 
 #print(ProbabilisticAutomata.reachable_states(PAter))
 
-print("original automata", PA6)
-miror=ProbabilisticAutomata.miror_automaton(PA6)
+print("original automata", PA7)
+miror=ProbabilisticAutomata.miror_automaton(PA7)
 print("miror",miror)
 cleared_miror = ProbabilisticAutomata.cleared_automaton(miror)
 print("cleared_miror", cleared_miror)
